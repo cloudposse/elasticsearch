@@ -17,6 +17,8 @@ RUN apt-get update && \
     wget -O - https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/$ELASTICSEARCH_VERSION/elasticsearch-$ELASTICSEARCH_VERSION.tar.gz | tar xz && \
     mv elasticsearch-* /elasticsearch
 
+#RUN useradd -c "ElasticSearch" -d /elasticsearch -m elasticsearch
+
 VOLUME ["/vol"]
 
 WORKDIR /elasticsearch
@@ -26,5 +28,4 @@ ADD config/ /elasticsearch/config/
 EXPOSE 9200
 EXPOSE 9300
 ENTRYPOINT ["/elasticsearch/bin/elasticsearch"]
-CMD -Des.config=/elasticsearch/config/config.yml
 
